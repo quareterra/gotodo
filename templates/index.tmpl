@@ -1,10 +1,9 @@
 <link rel="stylesheet" href="/static/css/style.css">
-<script src="static/js/index.js"></script>
 
 <div class="h-full bg-neutral-800">
 	<form method="post" action="set" class="p-8 text-4xl text-neutral-400">
-  	<input type="text" name="message" required class="bg-neutral-800 p-3">
-    <button type="submit" class="bg-neutral-400 text-neutral-800 p-4">submit</button>
-  </form>
+  		<input type="text" name="message" required class="bg-neutral-800 p-3">
+    	<button type="submit" class="bg-neutral-400 text-neutral-800 p-4">submit</button>
+  	</form>
 	<p class="text-4xl p-8 text-neutral-400">{{ .message }}</p>
 </div>
