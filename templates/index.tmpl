@@ -6,12 +6,23 @@
   	<button type="submit" class="px-4 py-2 ml-6 bg-neutral-900 rounded-lg">+</button>
 	</form>
 	<ul class="rounded-lg p-8 bg-neutral-800 m-auto w-[40%] mt-8 items-center">
-		{{range .elementList}}
+		{{range $index, $element := .elementList}}
 			<li class="p-2 w-full justify-between flex">
-				{{.}}
-   			<form method="post" action="removeElement" class="w-min m-0">
-					<button type="submit" class="w-min px-3 py-1 bg-neutral-900 rounded-lg m-0">-</button>
-  	 		</form>
+				{{ if $element.IsCrossed }}
+					<span class="line-through">{{$element.Name}}</span>
+				{{ else }}
+					<span>{{$element.Name}}</span>
+				{{ end }}
+				<div class="w-min flex">
+   				<form method="post" action="markElement" class="w-min m-0 mx-4">
+						<input type="hidden" name="index" value="{{$index}}">
+						<button type="submit" class="w-min px-3 py-1 bg-neutral-900 rounded-lg m-0">.</button>
+  	 			</form>
+   				<form method="post" action="removeElement" class="w-min m-0">
+						<input type="hidden" name="index" value="{{$index}}">
+						<button type="submit" class="w-min px-3 py-1 bg-neutral-900 rounded-lg m-0">-</button>
+  	 			</form>
+				</div>
 			</li>
 		{{end}}
 	</ul>
