@@ -7,6 +7,8 @@ import (
 )
 
 var message string
+var isLinethroughed bool
+var linethrough string
 
 func main() {
 	message = "initial message"
@@ -16,6 +18,7 @@ func main() {
 
 	router.GET("/", getIndex)
 	router.POST("/set", setMessage)
+	router.POST("/switch", switchLinethrough)
 
 	router.Run(":8080")
 }
@@ -26,7 +29,21 @@ func setMessage(context *gin.Context) {
 }
 
 func getIndex(context *gin.Context) {
+
+	if isLinethroughed {
+		linethrough = "line-through-all"
+	} else {
+		linethrough = ""
+	}
+
 	context.HTML(http.StatusOK, "index.tmpl", gin.H{
-		"message": message,
+		"message":     message,
+		"linethrough": linethrough,
 	})
+
+}
+
+func switchLinethrough(context *gin.Context) {
+	isLinethroughed = !isLinethroughed
+	context.Redirect(http.StatusFound, "/")
 }

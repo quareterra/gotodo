@@ -4,6 +4,10 @@
 	<form method="post" action="set" class="p-8 text-4xl text-neutral-400">
   		<input type="text" name="message" required class="bg-neutral-800 p-3">
     	<button type="submit" class="bg-neutral-400 text-neutral-800 p-4">submit</button>
+	</form>
+
+	<form method="post" action="switch" class="p-8 text-4xl text-neutral-400">
+    	<button type="submit" class="bg-neutral-400 text-neutral-800 p-4">line</button>
   	</form>
-	<p class="text-4xl p-8 text-neutral-400">{{ .message }}</p>
+	<p class="text-4xl p-8 text-neutral-400 {{ .linethrough }}">{{ .message }}</p>
 </div>
