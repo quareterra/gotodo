@@ -15,12 +15,12 @@ func main() {
 	router.LoadHTMLGlob("templates/*")
 
 	router.GET("/", getIndex)
-	router.POST("/set", addMessage)
-	
+	router.POST("/set", setMessage)
+
 	router.Run(":8080")
 }
 
-func addMessage(context *gin.Context) {
+func setMessage(context *gin.Context) {
 	message = context.PostForm("message")
 	context.Redirect(http.StatusFound, "/")
 }
