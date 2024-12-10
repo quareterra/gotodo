@@ -1,17 +1,18 @@
 <link rel="stylesheet" href="/static/css/style.css">
 
-<div class="h-full bg-neutral-800">
-	<form method="post" action="set" class="p-8 text-4xl text-neutral-400">
-  		<input type="text" name="message" required class="bg-neutral-800 p-3">
-    	<button type="submit" class="bg-neutral-400 text-neutral-800 p-4">submit</button>
+<body class="h-full p-8 pt-16 content-center bg-neutral-900 text-neutral-400 text-4xl">
+	<form method="post" action="addElement" class="w-[40%] justify-between flex bg-neutral-800 p-8 m-auto rounded-lg">
+		<input type="text" name="element" required class="flex-1 rounded-lg bg-neutral-900 p-2 outline-none">
+  	<button type="submit" class="px-4 py-2 ml-6 bg-neutral-900 rounded-lg">+</button>
 	</form>
-
-	<form method="post" action="switch" class="p-8 text-4xl text-neutral-400">
-    	<button type="submit" class="bg-neutral-400 text-neutral-800 p-4">line</button>
-	</form>
-	{{ if .isLinethroughed }}  
-		<p class="text-4xl p-8 text-neutral-400 line-through">{{ .message }}</p>
-	{{ else }}
-		<p class="text-4xl p-8 text-neutral-400">{{ .message }}</p>
-	{{ end }}
-</div>
+	<ul class="rounded-lg p-8 bg-neutral-800 m-auto w-[40%] mt-8 items-center">
+		{{range .elementList}}
+			<li class="p-2 w-full justify-between flex">
+				{{.}}
+   			<form method="post" action="removeElement" class="w-min m-0">
+					<button type="submit" class="w-min px-3 py-1 bg-neutral-900 rounded-lg m-0">-</button>
+  	 		</form>
+			</li>
+		{{end}}
+	</ul>
+</body>
