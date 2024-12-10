@@ -6,28 +6,27 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var counter uint
+var message string
 
 func main() {
-	counter = 0
-
+	message = "initial message"
 	router := gin.Default()
 	router.Static("/static", "./static")
 	router.LoadHTMLGlob("templates/*")
 
 	router.GET("/", getIndex)
+	router.POST("/set", addMessage)
+	
+	router.Run(":8080")
+}
 
-	router.Run(":80")
+func addMessage(context *gin.Context) {
+	message = context.PostForm("message")
+	context.Redirect(http.StatusFound, "/")
 }
 
 func getIndex(context *gin.Context) {
-	var underline string
-	if counter%2 == 0 {
-		underline = "underline"
-	}
 	context.HTML(http.StatusOK, "index.tmpl", gin.H{
-		"counter":   counter,
-		"underline": underline,
+		"message": message,
 	})
-	counter++
 }
