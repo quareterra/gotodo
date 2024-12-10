@@ -8,10 +8,10 @@ import (
 
 var message string
 var isLinethroughed bool
-var linethrough string
 
 func main() {
 	message = "initial message"
+
 	router := gin.Default()
 	router.Static("/static", "./static")
 	router.LoadHTMLGlob("templates/*")
@@ -29,18 +29,10 @@ func setMessage(context *gin.Context) {
 }
 
 func getIndex(context *gin.Context) {
-
-	if isLinethroughed {
-		linethrough = "line-through-all"
-	} else {
-		linethrough = ""
-	}
-
 	context.HTML(http.StatusOK, "index.tmpl", gin.H{
-		"message":     message,
-		"linethrough": linethrough,
+		"message":     		 	message,
+		"isLinethroughed": 	isLinethroughed,
 	})
-
 }
 
 func switchLinethrough(context *gin.Context) {

@@ -8,6 +8,10 @@
 
 	<form method="post" action="switch" class="p-8 text-4xl text-neutral-400">
     	<button type="submit" class="bg-neutral-400 text-neutral-800 p-4">line</button>
-  	</form>
-	<p class="text-4xl p-8 text-neutral-400 {{ .linethrough }}">{{ .message }}</p>
+	</form>
+	{{ if .isLinethroughed }}  
+		<p class="text-4xl p-8 text-neutral-400 line-through">{{ .message }}</p>
+	{{ else }}
+		<p class="text-4xl p-8 text-neutral-400">{{ .message }}</p>
+	{{ end }}
 </div>

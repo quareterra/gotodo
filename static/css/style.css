@@ -595,6 +595,10 @@ video {
   color: rgb(38 38 38 / var(--tw-text-opacity, 1));
 }
 
+.line-through {
+  text-decoration-line: line-through;
+}
+
 .line-through-all {
   text-decoration-line: line-through;
 }
